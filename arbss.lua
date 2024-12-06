@@ -1,0 +1,25 @@
+-- A Really Bad Storage System
+
+-- The hope of ARBSS is to create a little storage system that can take an arbitary amount of chests and other assorted inventories to hold your items.
+
+--- Extraction will be done by a turtle that either holds your items or drops it for you.
+--- 
+--- Items will be indexed to a table each time the computer restarts. This table will hold the location of every item and the current stack amount. It should implement something to hold where multiple stacks are. My inital idea would be a linked list implementation that will just nest the stacks behind one another. If next = nil there is only the one location of the item. Running total = itemCount + runningTotal of list before it. Easy to calculate without going too far down the tree, defaults to 
+--- 
+--- Table: {key="itemName", value = { next = list2, "itemCount", "itemLocation", "maxStackCount", "runningTotal" } }
+--- 
+--- Use settings as configs to list what interfaces should be used as what. IE, storage chests vs. dump chest vs. furnaces for crafting vs. monitors to run various terminal interfaces.
+--- 
+--- A GUI to help add chests and furnaces and turtles as certain things would be nice, but a stretch goal
+--- 
+--- 
+--- Main GUI should allow input and extraction of items. Eventually, the ability to specify how to make certain items to keep things stocked or smelted. 
+--- 
+--- A looping main program should detect unassigned peripherals and allow the user to assign uses to new additions. Maybe even give a little warning if there are no furnaces/smelting locations available. Arbitrarily allowing items to be placed into chests for crafting or smelting "routines" would be nice. Then tracking those and allowing a warning if items did not make it back properly
+--- 
+--- 
+--- How do I make sure this is good and modular in a useful way to further development
+--- 
+--- 
+--- Threading / Parralleization:
+----- Main running process: 1. Item manager (controls location table, spawns processes to update and move items, based on responses, as well condense stacks), 2. GUI/Info, talks to Item manager to see what is going on and make requests (info or extraction), 3. peripheal manager (find inventories, furnaces, monitors, etc. and decide what to do with them based on configs and user inputs which are replicated to configs) 4. crafting manager, 5. trash manager
